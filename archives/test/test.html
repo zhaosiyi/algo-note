@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    <link rel="stylesheet" href="../../css/materialize.min.css" charset="UTF-8">
+    <link rel="stylesheet" href="../../css/article.css" charset="UTF-8">
+    <script src="../../js/jquery-3.0.0.min.js"></script>
+    <script src="../../js/article.js"></script>
+</head>
+<body>
+<header class="blue darken-2 white-text z-depth-1">
+    <span id="home"><a class="white-text" href="../../test-index.html">Zhaosiyi's Blog</a></span>
+</header>
+<div id="main" class="row">
+<div id="content" class="col m7">
+    <h1 id="main-title">{% title %}</h1>
+    <div>
+        <span>创建日期：{% date %}</span>
+    </div>
+    {% content %}
+    <hr>
+    <span>End.</span>
+</div>
+<div id="directory" class="col m5">
+</div>
+</div>
+{% mathjax %}
+
+
+</body>
+</html>

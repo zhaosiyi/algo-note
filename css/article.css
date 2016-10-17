@@ -1,0 +1,194 @@
+::selection {
+    background-color: #D4ECFF;
+}
+
+html{
+    -webkit-font-smoothing: antialiased; 
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #FCFCFC;
+}
+
+header{
+    height: 48px;
+    opacity: 0.9;
+    margin-bottom: 16px;
+}
+
+#home{
+    display: inline-block;
+    height: 100%;
+    line-height: 48px;
+    margin-left: 8px;
+    font-size: 24px;
+    font-weight: 300;
+}
+
+#main{
+    font-family:  dashicons, 'Segoe UI', 'WenQuanYi Micro Hei', 'WenQuanYi Micro Hei Mono', 'Microsoft Yahei', 'Microsoft Yahei Mono', 微软雅黑, sans-serif;
+}
+
+#content{
+    position: relative;
+    padding-left: 40px;
+    
+}
+
+#directory{
+    
+}
+
+blockquote{
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-right: 16px;
+    border-left-color: #2196F3;
+    background-color: #f7f7f7;
+}
+
+h1{
+    font-size: 40px;
+    display: block;
+    font-weight: normal;
+    margin-top: 0;
+}
+
+
+.heading-high{
+    position: relative;
+    width: calc(100% + 40px);
+    left: -40px;
+    display: flex;
+    padding-left: 30px;
+    flex-wrap: nowrap;
+    border-left: 10px solid #4F9CEE;
+    justify-content: space-between;
+    margin-top: 40px;
+    margin-bottom: 32px;
+}
+
+.heading-low{
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    margin-top: 32px;
+    margin-bottom: 16px;
+}
+
+.heading-high>h2{
+    display: inline-block;
+    margin: 0;
+    flex-grow: 0; 
+    font-size: 32px;      
+}
+
+.heading-low>h3,.heading-low>h4{
+    display: inline-block;
+    margin: 0;
+    flex-grow: 0; 
+    font-size: 24px;
+}
+
+.heading-high>.divider{
+    position: relative;
+    top: 19px;
+    flex-grow: 2;
+    margin-left: 4px;
+}
+
+
+
+
+#content ul{
+    list-style-position: outside;
+    list-style-type: disc;
+}
+
+#content ul>li{
+    list-style-type: disc;
+}
+
+#content>img{
+    max-width: 100%;
+    height: auto;
+    display: inline-block;
+}
+
+footer{
+    display: block;
+    margin-top: 30px;
+}
+
+footer>div{
+    padding: 5px;
+}
+
+.img-box{
+    display: block;
+    width: 100%;
+}
+
+.img-box>img{
+    display: block;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+header{
+    margin-bottom: 30px;
+}
+
+#directory>ul{
+    margin-left: 40px;
+    padding-left: 0;
+    padding-left: 24px;
+    padding-top: 16px;
+    overflow-y: auto;
+}
+
+#directory>ul>li{
+    list-style-type: none;
+}
+
+#directory>ul>li>a{
+    border-left-color: #fb8c00; 
+}
+
+#directory>ul>li>a.active{
+    border-left-color: #fb8c00;
+    color: #fb8c00;
+    font-weight: bolder;
+}
+
+.dir-H3+.dir-H2{
+    margin-top: 8px;
+}
+
+.dir-H2+.dir-H3{
+    margin-top: 0px;
+}
+
+.dir-H3>a{
+    white-space: pre-wrap;     
+}
+
+.dir-H3>a::before, .dir-H4>a::before{
+    content: ">  ";
+}
+
+
+pre{
+    font-size: 20px;
+    font-weight: 400;
+}
+
+pre .comment{
+    font-family: SimHei  !important;
+    font-weight: 500;
+    font-size: 18px;
+    color: #1e88e5 !important;
+}
