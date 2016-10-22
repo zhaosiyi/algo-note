@@ -70,7 +70,7 @@ void dijkstra(){
     while(!near.empty()){
         pii top= near.top(); near.pop();
         int u= top.second; // 仅为简化代码。
-        if(done[u]) continue; // 一个点可能多次入队，所以判重。
+        if(done[u]) continue; // 同一点可能多次入队，需要判重。
         done.set(u);
         for(int i=0, end= edges[u].size(); i&lt;end; ++i){
             Edge &amp;e= edges[u][i];
