@@ -62,9 +62,10 @@ priority_queue&lt;pii, vector&lt;pii&gt;, greater&lt;pii&gt; &gt; near;
 bitset&lt;maxn&gt; done;
 void dijkstra(){
     for(int i=1; i&lt;maxn; ++i){
-        dist[i]= INF; // bitset 会默认将各个位初始化为 0 ，无需自己动手。
+        dist[i]= INF; 
     }
     dist[source]= 0;
+    // bitset 默认将所有位初始化为 0 ，无需亲自动手。
     near.push(make_pair(0, source));
     while(!near.empty()){
         pii top= near.top(); near.pop();
