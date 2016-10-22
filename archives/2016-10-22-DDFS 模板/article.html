@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    <link rel="stylesheet" href="../../css/materialize.min.css" charset="UTF-8">
+    <link rel="stylesheet" href="../../css/prism.css" charset="UTF-8">
+    <link rel="stylesheet" href="../../css/article.css" charset="UTF-8">
+</head>
+<body>
+<header class="blue darken-2 white-text z-depth-1">
+    <span id="home"><a class="white-text" href="../../index.html">Zhaosiyi's Blog</a></span>
+</header>
+<div id="main" class="row">
+<div id="content" class="col m7 s12">
+    <h1 id="main-title">DDFS 模板</h1>
+    <div>
+        <span>创建日期：2016-10-22</span>
+    </div>
+    
+<pre class="line-numbers"><code class="language-cpp">vector&lt;int&gt; G[maxn]; // G[i][j] 表示 i 可到达的第 j 个点。
+bitset&lt;maxn&gt; visited;
+void dfs(int u){
+    visited.set(u);
+    previsit(u);
+    for(int i=0, end= G[i].size(); i&lt;end; ++i){
+        int now= G[u][i];
+        if(!visited(now)) dfs(now);
+    }
+    postvisited(u);
+}
+</code></pre>
+<p>其中 maxn 表示点的个数。</p>
+<p>previsit(u) 表示遍历 u 的相邻点之前的操作。</p>
+<p>postvisit(u) 表示遍历 u 的相邻点之后的操作。</p>
+
+    <hr>
+    <span>End.</span>
+</div>
+<div id="directory" class="col m5 hide-on-small-only"></div>
+</div>
+<script src="../../js/jquery-3.0.0.min.js"></script>
+<script src="../../js/materialize.min.js"></script>
+<script src="../../js/prism.js"></script>
+<script src="../../js/article.js"></script>
+
+</body>
+</html>
