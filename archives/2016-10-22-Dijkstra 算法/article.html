@@ -56,8 +56,9 @@ struct Edge{
     int to, dist;
 };
 vector&lt;Edge&gt; edges[maxn]; // edges[i][j] 表示以 i 为起点的第 j 条边。
-int dist[maxn];
-priority_queue&lt;pii, vector&lt;pii&gt;, greater&lt;pii&gt; &gt; near; // STL 优先队列默认是最大堆，因此需改为最小堆。
+int dist[maxn], prev[maxn];
+// STL 优先队列默认是最大堆，因此需改为最小堆。
+priority_queue&lt;pii, vector&lt;pii&gt;, greater&lt;pii&gt; &gt; near; 
 bitset&lt;maxn&gt; done;
 void dijkstra(){
     for(int i=1; i&lt;maxn; ++i){
@@ -67,13 +68,14 @@ void dijkstra(){
     near.push(make_pair(0, source));
     while(!near.empty()){
         pii top= near.top(); near.pop();
-        int u= top.second;
+        int u= top.second; // 仅为简化代码。
         if(done[u]) continue; // 因为一个点可能多次入队，所以需要判重。
         done.set(u);
         for(int i=0, end= edges[u].size(); i&lt;end; ++i){
             Edge &amp;e= edges[u][i];
             if(dist[e.to]&gt;dist[u]+e.dist){
                 dist[e.to]= dist[u]+e.dist;
+                prev[e.to]= u;
                 near.push(make_pair(dist[e.to], e.to));
             }
         }
