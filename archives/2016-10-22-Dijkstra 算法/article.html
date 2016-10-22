@@ -27,7 +27,7 @@
 <li><p>dist：整形数组，dist[i] 表示源点到 i 的最短距离。</p></li>
 <li><p>done：布尔数组，确定最短路径的点的 done 值为 true 。</p></li>
 <li><p>prev：整形数组，prev[i] 表示到达 i 的最短路径中 i 的前一个点。</p></li>
-<li><p>near：优先队列，存储和确定最短路径的点相邻的点集。存储数据对 {num, dist}，其中 num 表示结点编号，dist 表示该数据对插入优先队列时该点距源点的距离。dist 越小的数据对优先级越大。</p></li>
+<li><p>near：优先队列，存储和确定最短路径的点相邻的点集。存储数据对 {num, dist}，其中 num 表示结点编号，dist 表示该数据对插入优先队列时该点距源点的距离。dist 越小的数据对优先级越大，即 near 是一个最小堆。</p></li>
 </ul>
 <pre class="line-numbers"><code class="language-cpp">// maxn 表示点的个数
 void dijkstra(source){
@@ -48,11 +48,50 @@ void dijkstra(source){
 }
 </code></pre>
 <div class="heading-high scrollspy"><h2>C++ 实现</h1><div class="divider"></div></div>
+<pre class="line-numbers"><code class="language-cpp">const int INF= 2147483647;
+const int maxn= 10005;
+int source; // 源点
+typedef pair&lt;int, int&gt; pii; // 仅为简化代码
+struct Edge{
+    int to, dist;
+};
+vector&lt;Edge&gt; edges[maxn]; // edges[i][j] 表示以 i 为起点的第 j 条边。
+int dist[maxn];
+priority_queue&lt;pii, vector&lt;pii&gt;, greater&lt;pii&gt; &gt; near; // STL 优先队列默认是最大堆，因此需改为最小堆。
+bitset&lt;maxn&gt; done;
+void dijkstra(){
+    for(int i=1; i&lt;maxn; ++i){
+        dist[i]= INF; // bitset 会默认将各个位初始化为 0 ，无需自己动手。
+    }
+    dist[source]= 0;
+    near.push(make_pair(0, source));
+    while(!near.empty()){
+        pii top= near.top(); near.pop();
+        int u= top.second;
+        if(done[u]) continue; // 因为一个点可能多次入队，所以需要判重。
+        done.set(u);
+        for(int i=0, end= edges[u].size(); i&lt;end; ++i){
+            Edge &amp;e= edges[u][i];
+            if(dist[e.to]&gt;dist[u]+e.dist){
+                dist[e.to]= dist[u]+e.dist;
+                near.push(make_pair(dist[e.to], e.to));
+            }
+        }
+    }
+}
+</code></pre>
+<div class="heading-high scrollspy"><h2>关于优化</h1><div class="divider"></div></div>
+<p>使用堆的 Dijkstra 算法已经有线性对数的复杂度了，能做的只是些常数上的优化。</p>
+<div class="heading-high scrollspy"><h2>其他</h1><div class="divider"></div></div>
+可以去<a href="https://www.luogu.org/problem/show?pid=3371">这里</a>测试一下程序。
+<p>下面是这道题的完整代码：</p>
 <pre class="line-numbers"><code class="language-cpp">#include &lt;cstdio&gt;
 #include &lt;vector&gt;
 #include &lt;utility&gt;
+#include &lt;climits&gt;
 #include &lt;algorithm&gt;
 #include &lt;queue&gt;
+#include &lt;bitset&gt;
 using namespace std;
 const int INF= 2147483647;
 typedef pair&lt;int, int&gt; pii;
@@ -99,10 +138,6 @@ int main(){
     return 0;
 }
 </code></pre>
-<div class="heading-high scrollspy"><h2>关于优化</h1><div class="divider"></div></div>
-<p>使用堆的 Dijkstra 算法已经有线性对数的复杂度了，能做的只是些常数上的优化。</p>
-<div class="heading-high scrollspy"><h2>其他</h1><div class="divider"></div></div>
-可以去<a href="https://www.luogu.org/problem/show?pid=3371">这里</a>测试一下程序。
 
     <hr>
     <span>End.</span>
