@@ -54,7 +54,8 @@ typedef pair&lt;int, int&gt; pii; // 仅为简化代码
 struct Edge{
     int to, dist;
 };
-vector&lt;Edge&gt; edges[maxn]; // edges[i][j] 表示以 i 为起点的第 j 条边。
+// edges[i][j] 表示以 i 为起点的第 j 条边。
+vector&lt;Edge&gt; edges[maxn]; 
 int dist[maxn], prev[maxn], source;
 // STL 优先队列默认是最大堆，因此需改为最小堆。
 priority_queue&lt;pii, vector&lt;pii&gt;, greater&lt;pii&gt; &gt; near; 
