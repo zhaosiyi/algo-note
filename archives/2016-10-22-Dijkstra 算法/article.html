@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    <link rel="stylesheet" href="../../css/materialize.min.css" charset="UTF-8">
+    <link rel="stylesheet" href="../../css/prism.css" charset="UTF-8">
+    <link rel="stylesheet" href="../../css/article.css" charset="UTF-8">
+</head>
+<body>
+<header class="blue darken-2 white-text z-depth-1">
+    <span id="home"><a class="white-text" href="../../index.html">Zhaosiyi's Blog</a></span>
+</header>
+<div id="main" class="row">
+<div id="content" class="col m7 s12">
+    <h1 id="main-title">Dijkstra 算法</h1>
+    <div>
+        <span>创建日期：2016-10-22</span>
+    </div>
+    <div class="heading-high scrollspy"><h2>简介</h1><div class="divider"></div></div>
+<p>Dijkstra 算法用于解决“单元最短路径（single source shortest path，SSSP）”问题。</p>
+<p>该算法要求图中不存在负权边。图可以有环，也可以不连通。</p>
+<p>该算法主要运用贪心和动态规划的思想，可以稳定地在线性对数复杂度内求解。</p>
+<div class="heading-high scrollspy"><h2>伪代码</h1><div class="divider"></div></div>
+<p>数据说明：</p>
+<ul>
+<li><p>dist：整形数组，dist[i] 表示源点到 i 的最短距离。</p></li>
+<li><p>done：布尔数组，确定最短路径的点的 done 值为 true 。</p></li>
+<li><p>prev：整形数组，prev[i] 表示到达 i 的最短路径中 i 的前一个点。</p></li>
+<li><p>near：优先队列，存储和确定最短路径的点相邻的点集。存储数据对 {num, dist}，其中 num 表示结点编号，dist 表示该数据对插入优先队列时该点距源点的距离。dist 越小的数据对优先级越大。</p></li>
+</ul>
+<pre class="line-numbers"><code class="language-cpp">// maxn 表示点的个数
+void dijkstra(source){
+    dist[source]= 0; 其余 dist 值设为 INF。 
+    near.push({source, 0});
+    while(near不空){
+        top= near.top(); near.pop();
+        if(done[top.num]) continue;
+        done[top.num]= true;
+        for(i= 和 top.num 相邻的每一个点){
+            if(松弛成功){
+                更新 dist[i];
+                prev[i]= top.num;
+                near.push({top.num, dist[top.num]});
+            }
+        }
+    }
+}
+</code></pre>
+<div class="heading-high scrollspy"><h2>C++ 实现</h1><div class="divider"></div></div>
+<pre class="line-numbers"><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;utility&gt;
+#include &lt;algorithm&gt;
+#include &lt;queue&gt;
+using namespace std;
+const int INF= 2147483647;
+typedef pair&lt;int, int&gt; pii;
+struct Edge{
+    int to, dist;
+};
+const int maxn= 10005;
+int n_size, e_size, source;
+vector&lt;Edge&gt; edges[maxn];
+int dist[maxn];
+priority_queue&lt;pii, vector&lt;pii&gt;, greater&lt;pii&gt; &gt; near;
+bitset&lt;maxn&gt; done;
+void dijkstra(){
+    for(int i=1; i&lt;maxn; ++i){
+        dist[i]= INF;
+    }
+    dist[source]= 0;
+    near.push(make_pair(0, source));
+    while(!near.empty()){
+        pii top= near.top(); near.pop();
+        int u= top.second;
+        if(done[u]) continue;
+        done.set(u);
+        for(int i=0, end= edges[u].size(); i&lt;end; ++i){
+            Edge &amp;e= edges[u][i];
+            if(dist[e.to]&gt;dist[u]+e.dist){
+                dist[e.to]= dist[u]+e.dist;
+                near.push(make_pair(dist[e.to], e.to));
+            }
+        }
+    }
+}
+int main(){
+    scanf("%d%d%d", &amp;n_size, &amp;e_size, &amp;source);
+    for(int i=0; i&lt;e_size; ++i){
+        int from, to, d;
+        scanf("%d%d%d", &amp;from, &amp;to, &amp;d);
+        edges[from].push_back((Edge){to, d});
+    }
+    dijkstra();
+    for(int i=1; i&lt;=n_size; ++i){
+        printf("%d ", dist[i]);
+    }
+    return 0;
+}
+</code></pre>
+<div class="heading-high scrollspy"><h2>关于优化</h1><div class="divider"></div></div>
+<p>使用堆的 Dijkstra 算法已经有线性对数的复杂度了，能做的只是些常数上的优化。</p>
+<div class="heading-high scrollspy"><h2>其他</h1><div class="divider"></div></div>
+可以去<a href="https://www.luogu.org/problem/show?pid=3371">这里</a>测试一下程序。
+
+    <hr>
+    <span>End.</span>
+</div>
+<div id="directory" class="col m5 hide-on-small-only"></div>
+</div>
+<script src="../../js/jquery-3.0.0.min.js"></script>
+<script src="../../js/materialize.min.js"></script>
+<script src="../../js/prism.js"></script>
+<script src="../../js/article.js"></script>
+
+</body>
+</html>
