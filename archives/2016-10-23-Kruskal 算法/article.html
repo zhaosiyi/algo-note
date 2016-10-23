@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    <link rel="stylesheet" href="../../css/materialize.min.css" charset="UTF-8">
+    <link rel="stylesheet" href="../../css/prism.css" charset="UTF-8">
+    <link rel="stylesheet" href="../../css/article.css" charset="UTF-8">
+</head>
+<body>
+<header class="blue darken-2 white-text z-depth-1">
+    <span id="home"><a class="white-text" href="../../index.html">Zhaosiyi's Blog</a></span>
+</header>
+<div id="main" class="row">
+<div id="content" class="col m7 s12">
+    <h1 id="main-title">Kruskal 算法</h1>
+    <div>
+        <span>创建日期：2016-10-23</span>
+    </div>
+    <div class="heading-high scrollspy"><h2>简介</h1><div class="divider"></div></div>
+<p>Kruskal 算法用于解决无向图的最小生成树问题（Minimal Spanning Tree，MST）。</p>
+<p>该算法利用贪心策略，其时间复杂度为 O（边数）。</p>
+<p>该算法能在求出最小生成树的同时判断图是否连通。</p>
+<p>如果算法结束后最小生成树的边等于点数-1，则图连通；小于则不连通。</p>
+<p>算法需要用到并查集来判断与合并连通分量。</p>
+<div class="heading-high scrollspy"><h2>伪代码</h1><div class="divider"></div></div>
+<pre class="line-numbers"><code class="language-cpp">void kruskal(){
+    将边按权值升序排序。
+    令每个点自成一个独立的连通分量。
+    for(e=权值从小到大的每一条边){
+        if(e所连两点不在同一连通分量中){
+            将 e 加入最小生成树。
+            合并 e 所连两点所在的连通分量。
+        }
+    }
+}
+</code></pre>
+<div class="heading-high scrollspy"><h2>C++ 代码</h1><div class="divider"></div></div>
+<pre class="line-numbers"><code class="language-cpp">UnionFindSet ufs;
+vector&lt;Edge&gt; edges, ans;
+void kruskal(){
+    sort(edges.begin(), edges.end());
+    ufs.init();
+    for(int i=0, end=edges.size(); i&lt;end; ++i){
+        Edge &amp;e= edges[i];
+        if(!ufs.together(e.from, e.to)){
+            ans.push_back(e);
+            ufs.merge(e.from, e.to);
+        }
+    }
+}
+</code></pre>
+
+    <hr>
+    <span>End.</span>
+</div>
+<div id="directory" class="col m5 hide-on-small-only"></div>
+</div>
+<script src="../../js/jquery-3.0.0.min.js"></script>
+<script src="../../js/materialize.min.js"></script>
+<script src="../../js/prism.js"></script>
+<script src="../../js/article.js"></script>
+
+</body>
+</html>
