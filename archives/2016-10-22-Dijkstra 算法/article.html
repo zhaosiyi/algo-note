@@ -83,7 +83,43 @@ void dijkstra(){
 </code></pre>
 <div class="heading-high scrollspy"><h2>关于优化</h1><div class="divider"></div></div>
 <p>使用堆的 Dijkstra 算法已经有线性对数的复杂度了，能做的只是些常数上的优化。</p>
-<p>对于</p>
+<p>对于上述代码第 21 行的判重部分，可以将其修改为</p>
+<pre class="line-numbers"><code class="language-cpp">if(dist[u]!=top.first) continue;
+</code></pre>
+<p>可以省去 done 数组。</p>
+<p>修改后代码如下：</p>
+<pre class="line-numbers"><code class="language-cpp">const int INF= 2147483647;
+const int maxn= 10005;
+typedef pair&lt;int, int&gt; pii; // 仅为简化代码
+struct Edge{
+    int to, dist;
+};
+// edges[i][j] 表示以 i 为起点的第 j 条边。
+vector&lt;Edge&gt; edges[maxn]; 
+int dist[maxn], prev[maxn], source;
+// STL 优先队列默认是最大堆，因此需改为最小堆。
+priority_queue&lt;pii, vector&lt;pii&gt;, greater&lt;pii&gt; &gt; near; 
+/*bitset&lt;maxn&gt; done;*/ // 删去 done 。
+void dijkstra(){
+    for(int i=1; i&lt;maxn; ++i){ dist[i]= INF; }
+    dist[source]= 0;
+    near.push(make_pair(0, source));
+    while(!near.empty()){
+        pii top= near.top(); near.pop();
+        int u= top.second; // 仅为简化代码。
+        if(dist[u]!=top.first) continue; // 修改后的代码。
+        /*done.set(u);*/ // 删除代码。
+        for(int i=0, end= edges[u].size(); i&lt;end; ++i){
+            Edge &amp;e= edges[u][i];
+            if(dist[e.to]&gt;dist[u]+e.dist){
+                dist[e.to]= dist[u]+e.dist;
+                prev[e.to]= u;
+                near.push(make_pair(dist[e.to], e.to));
+            }
+        }
+    }
+}
+</code></pre>
 <div class="heading-high scrollspy"><h2>其他</h1><div class="divider"></div></div>
 可以去<a href="https://www.luogu.org/problem/show?pid=3371">这里</a>测试一下程序。
 <p>下面是这道题的完整代码：</p>
