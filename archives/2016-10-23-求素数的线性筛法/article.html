@@ -35,6 +35,46 @@ void f(int end){
     }
 }
 </code></pre>
+<div class="heading-high scrollspy"><h2>习题</h1><div class="divider"></div></div>
+可以到<a href="https://www.luogu.org/problem/show?pid=3383">这里</a>测试程序。代码如下：
+<pre class="line-numbers"><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;bitset&gt;
+using namespace std;
+ 
+const int maxn= 10000005;
+bitset&lt;maxn&gt; not_prime;
+vector&lt;int&gt; ans; 
+ 
+void f(int end){
+    not_prime.set(1); // 1 不是素数。
+    for(int i=2; i&lt;=end; ++i){
+        if(!not_prime[i]) ans.push_back(i); // 未被筛去的数一定是素数。
+        for(int j=0, s=ans.size(); j&lt;s &amp;&amp; (long long)i*ans[j]&lt;=end; ++j){
+            not_prime.set(i*ans[j]); // 素数的倍数一定是合数。
+            if(i%ans[j]==0) break; // 及时退出循环防止重复筛数。
+        }
+    }
+}
+ 
+int main(){
+ 
+    int range, size;
+ 
+    scanf("%d%d", &amp;range, &amp;size);
+ 
+    f(range);
+ 
+    for(int i=0; i&lt;size; ++i){
+        int n;
+        if(1!=scanf("%d", &amp;n)) break;
+        if(not_prime[n]) printf("No\n");
+        else printf("Yes\n");
+    }
+ 
+    return 0;
+}
+</code></pre>
 
     <hr>
     <span>End.</span>
