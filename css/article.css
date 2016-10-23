@@ -180,6 +180,10 @@ header{
     content: ">  ";
 }
 
+.language-text{
+    font-family: SimHei !important;
+    letter-spacing: 1px;
+}
 
 pre{
     font-size: 20px;
