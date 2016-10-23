@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    <link rel="stylesheet" href="../../css/materialize.min.css" charset="UTF-8">
+    <link rel="stylesheet" href="../../css/prism.css" charset="UTF-8">
+    <link rel="stylesheet" href="../../css/article.css" charset="UTF-8">
+</head>
+<body>
+<header class="blue darken-2 white-text z-depth-1">
+    <span id="home"><a class="white-text" href="../../index.html">Zhaosiyi's Blog</a></span>
+</header>
+<div id="main" class="row">
+<div id="content" class="col m7 s12">
+    <h1 id="main-title">并查集</h1>
+    <div>
+        <span>创建日期：2016-10-23</span>
+    </div>
+    <div class="heading-high scrollspy"><h2>简介</h1><div class="divider"></div></div>
+<p>并查集（Union Find Set）用于不相交集合的查询与合并。</p>
+<p>它只有 2 个操作：</p>
+<ul>
+<li><p>查询两个元素是否在同一集合中。</p></li>
+<li><p>合并两个元素所在集合。</p></li>
+</ul>
+<p>使用路径压缩的并查集的平摊复杂度接近 O(1) 。</p>
+<div class="heading-high scrollspy"><h2>代码</h1><div class="divider"></div></div>
+<pre class="line-numbers"><code class="language-cpp">struct UnionFindSet{
+    int dad[maxn];
+    void init(){
+        for(int i=0; i&lt;maxn; ++i) dad[i]= i;
+    }
+    int get_dad(int u){
+        int ans= dad[u];
+        while(ans!=dad[ans]) ans= dad[ans];
+        return dad[u]= ans;
+    }
+    void merge(int a, int b){
+        dad[get_dad(a)]= get_dad(b);
+    }
+    bool together(int a, int b){
+        return get_dad(a)==get_dad(b);
+    }
+};
+</code></pre>
+
+    <hr>
+    <span>End.</span>
+</div>
+<div id="directory" class="col m5 hide-on-small-only"></div>
+</div>
+<script src="../../js/jquery-3.0.0.min.js"></script>
+<script src="../../js/materialize.min.js"></script>
+<script src="../../js/prism.js"></script>
+<script src="../../js/article.js"></script>
+
+</body>
+</html>
