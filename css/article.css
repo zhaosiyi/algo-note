@@ -195,3 +195,7 @@ pre .comment{
     font-size: 18px;
     color: #1e88e5 !important;
 }
+
+a::before, a::after{
+    content: " ";
+}

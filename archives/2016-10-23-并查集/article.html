@@ -44,6 +44,56 @@
     }
 };
 </code></pre>
+<div class="heading-high scrollspy"><h2>其他</h1><div class="divider"></div></div>
+程序的测试可以到<a href="https://www.luogu.org/problem/show?pid=3367">这里</a>，下面是该题的完整代码：
+<pre class="line-numbers"><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+ 
+const int maxn= 10005;
+ 
+struct UnionFindSet{
+    int dad[maxn];
+ 
+    void init(){
+        for(int i=0; i&lt;maxn; ++i) dad[i]= i;
+    }
+ 
+    int get_dad(int u){
+        int ans= dad[u];
+        while(ans!=dad[ans]) ans= dad[ans];
+        return dad[u]= ans;
+    }
+ 
+    void merge(int a, int b){
+        dad[get_dad(a)]= get_dad(b);
+    }
+ 
+    bool together(int a, int b){
+        return get_dad(a)==get_dad(b);
+    }
+ 
+}ufs;
+ 
+int main(){
+    int e_size, o_size;
+    scanf("%d%d", &amp;e_size, &amp;o_size);
+ 
+    ufs.init();
+    for(int i=0; i&lt;o_size; ++i){
+        int a, b, o;
+        scanf("%d%d%d", &amp;o, &amp;a, &amp;b);
+        if(o==1){
+            ufs.merge(a, b);
+        }
+        else if(o==2){
+            printf("%c\n", (ufs.together(a, b)? 'Y':'N'));
+        }
+    }
+    return 0;
+}
+</code></pre>
 
     <hr>
     <span>End.</span>
