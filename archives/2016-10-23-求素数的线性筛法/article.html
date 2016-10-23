@@ -47,12 +47,12 @@ bitset&lt;maxn&gt; not_prime;
 vector&lt;int&gt; ans; 
  
 void f(int end){
-    not_prime.set(1); // 1 不是素数。
+    not_prime.set(1);
     for(int i=2; i&lt;=end; ++i){
-        if(!not_prime[i]) ans.push_back(i); // 未被筛去的数一定是素数。
+        if(!not_prime[i]) ans.push_back(i);
         for(int j=0, s=ans.size(); j&lt;s &amp;&amp; (long long)i*ans[j]&lt;=end; ++j){
-            not_prime.set(i*ans[j]); // 素数的倍数一定是合数。
-            if(i%ans[j]==0) break; // 及时退出循环防止重复筛数。
+            not_prime.set(i*ans[j]);
+            if(i%ans[j]==0) break;
         }
     }
 }
