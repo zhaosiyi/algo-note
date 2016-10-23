@@ -48,6 +48,71 @@ void kruskal(){
     }
 }
 </code></pre>
+<div class="heading-high scrollspy"><h2>其他</h1><div class="divider"></div></div>
+可以到<a href="https://www.luogu.org/problem/show?pid=3366">这里</a>测试程序。
+<p>该题完整代码：</p>
+<pre class="line-numbers"><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+const int maxn= 5005;
+struct Edge{
+    int from, to, dist;
+    bool operator&lt;(const Edge &amp;e)const{
+        return dist&lt;e.dist;
+    }
+};
+struct UnionFindSet{
+    int dad[maxn];
+    void init(){
+        for(int i=0; i&lt;maxn; ++i) dad[i]= i;
+    }
+    int get_dad(int u){
+        int ans= dad[u];
+        while(ans!=dad[ans]) ans= dad[ans];
+        return dad[u]= ans;
+    }
+    void merge(int a, int b){
+        dad[get_dad(a)]= get_dad(b);
+    }
+    bool together(int a, int b){
+        return get_dad(a)==get_dad(b);
+    }
+};
+UnionFindSet ufs;
+vector&lt;Edge&gt; edges, ans;
+void kruskal(){
+    sort(edges.begin(), edges.end());
+    ufs.init();
+    for(int i=0, end=edges.size(); i&lt;end; ++i){
+        Edge &amp;e= edges[i];
+        if(!ufs.together(e.from, e.to)){
+            ans.push_back(e);
+            ufs.merge(e.from, e.to);
+        }
+    }
+}
+int main(){
+    int n_size, e_size;
+    scanf("%d%d", &amp;n_size, &amp;e_size);
+    for(int i=0; i&lt;e_size; ++i){
+        int from, to, dist;
+        scanf("%d%d%d", &amp;from, &amp;to, &amp;dist);
+        edges.push_back((Edge){from, to, dist});
+    }
+    
+    kruskal();
+    if(ans.size()+1==n_size){
+        int sum=0;
+        for(int i=0, end=ans.size(); i&lt;end; ++i){
+            sum+= ans[i].dist;
+        }
+        printf("%d\n", sum);
+    }
+    else printf("orz\n");
+    return 0;
+}
+</code></pre>
 
     <hr>
     <span>End.</span>
