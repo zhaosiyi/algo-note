@@ -61,9 +61,7 @@ int dist[maxn], prev[maxn], source;
 priority_queue&lt;pii, vector&lt;pii&gt;, greater&lt;pii&gt; &gt; near; 
 bitset&lt;maxn&gt; done;
 void dijkstra(){
-    for(int i=1; i&lt;maxn; ++i){
-        dist[i]= INF; 
-    }
+    for(int i=1; i&lt;maxn; ++i){ dist[i]= INF; }
     dist[source]= 0;
     // bitset 默认将所有位初始化为 0 ，无需亲自动手。
     near.push(make_pair(0, source));
@@ -85,6 +83,7 @@ void dijkstra(){
 </code></pre>
 <div class="heading-high scrollspy"><h2>关于优化</h1><div class="divider"></div></div>
 <p>使用堆的 Dijkstra 算法已经有线性对数的复杂度了，能做的只是些常数上的优化。</p>
+<p>对于</p>
 <div class="heading-high scrollspy"><h2>其他</h1><div class="divider"></div></div>
 可以去<a href="https://www.luogu.org/problem/show?pid=3371">这里</a>测试一下程序。
 <p>下面是这道题的完整代码：</p>
