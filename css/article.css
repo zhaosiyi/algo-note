@@ -19,12 +19,6 @@ header{
     margin-bottom: 16px;
 }
 
-@media (max-width: 979px){
-    header{
-        margin-bottom: 8px;
-    }
-}
-
 #home{
     display: inline-block;
     height: 100%;
@@ -66,7 +60,6 @@ h1{
     }    
 }
 
-
 .heading-high{
     position: relative;
     width: calc(100% + 40px);
@@ -84,8 +77,8 @@ h1{
     .heading-high{
         width: calc(100% + 16px);
         left: -16px;
-        padding-left: 8px;
-        border-left-width: 8px;
+        padding-left: 10px;
+        border-left-width: 6px;
     }
 }
 
@@ -122,6 +115,14 @@ h1{
 @media (max-width: 979px){
     .heading-high>h2{
         font-size: 24px;
+    }
+
+    .heading-low>h3, .heading-low>h4{
+        font-size: 20px;
+    }
+
+    .heading-high>.divider{
+        margin-left: 8px;
     }
 }
 
