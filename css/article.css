@@ -19,6 +19,12 @@ header{
     margin-bottom: 16px;
 }
 
+@media (max-width: 979px){
+    header{
+        margin-bottom: 8px;
+    }
+}
+
 #home{
     display: inline-block;
     height: 100%;
