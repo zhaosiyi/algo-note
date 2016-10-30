@@ -3,6 +3,7 @@
 }
 
 html{
+    font-family:  dashicons, 'Segoe UI', 'WenQuanYi Micro Hei', 'WenQuanYi Micro Hei Mono', 'Microsoft Yahei', 'Microsoft Yahei Mono', 微软雅黑, sans-serif !important;
     -webkit-font-smoothing: antialiased; 
 }
 
@@ -27,18 +28,9 @@ header{
     font-weight: 300;
 }
 
-#main{
-    font-family:  dashicons, 'Segoe UI', 'WenQuanYi Micro Hei', 'WenQuanYi Micro Hei Mono', 'Microsoft Yahei', 'Microsoft Yahei Mono', 微软雅黑, sans-serif;
-}
-
 #content{
     position: relative;
     padding-left: 40px;
-    
-}
-
-#directory{
-    
 }
 
 blockquote{
