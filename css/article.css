@@ -33,6 +33,12 @@ header{
     padding-left: 40px;
 }
 
+@media (max-width: 979px){
+    #content{
+        padding-left: 16px;
+    }
+}
+
 blockquote{
     padding-top: 1px;
     padding-bottom: 1px;
