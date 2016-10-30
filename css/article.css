@@ -173,8 +173,14 @@ header{
 }
 
 .language-text{
-    font-size: 16px;
+    font-size: 18px;
     font-family: SimHei !important;
+}
+
+@media (max-width: 979px){
+    .language-text{
+        font-size: 16px;
+    }
 }
 
 pre{
