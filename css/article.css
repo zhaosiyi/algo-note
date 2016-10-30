@@ -54,6 +54,12 @@ h1{
     margin-top: 0;
 }
 
+@media (max-width: 979px){
+    h1{
+        font-size: 32px;
+    }    
+}
+
 
 .heading-high{
     position: relative;
@@ -71,7 +77,9 @@ h1{
 @media (max-width: 979px){
     .heading-high{
         width: calc(100% + 16px);
-        padding-left: 6px;
+        left: -16px;
+        padding-left: 8px;
+        border-left-width: 8px;
     }
 }
 
@@ -105,7 +113,11 @@ h1{
     margin-left: 16px;
 }
 
-
+@media (max-width: 979px){
+    .heading-high>h2{
+        font-size: 24px;
+    }
+}
 
 
 #content ul{
