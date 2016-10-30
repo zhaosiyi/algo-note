@@ -195,6 +195,16 @@ pre .comment{
     color: #1e88e5 !important;
 }
 
+@media (max-width: 979px){
+    pre{
+        font-size: 14px;
+    }
+
+    pre .comment{
+        font-size: 14px;
+    }
+}
+
 a::before, a::after{
     content: " ";
 }
