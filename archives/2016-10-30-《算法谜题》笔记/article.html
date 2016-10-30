@@ -25,6 +25,20 @@
     <blockquote>
 <p>书籍信息：《算法谜题》，[美]Anany Levitin, Maria Levitin 著，人民邮电出版社。</p>
 </blockquote>
+<div class="heading-high scrollspy"><h2>1.1 算法设计的若干通用策略</h1><div class="divider"></div></div>
+<p>包含算法：</p>
+<ul>
+<li><p>穷举搜索（exhaustive search）</p></li>
+<li><p>回溯法（backtracking）</p></li>
+<li><p>减治法（decrease-and-conquer）</p></li>
+</ul>
+<div class="heading-low scrollspy"><h3>穷举搜索</h2></div>
+<p>即生成所有可能的解，然后一一检查解是否正确。</p>
+<p>其时间复杂度通常为阶乘级别，效率低下，但适用范围广泛。</p>
+<div class="heading-low scrollspy"><h3>回溯法</h2></div>
+<p>基本思路和穷举搜索类似，但回溯法在一个解还未构造完成时就开始不断评估这个“半成品”。当它断定这个“半成品”在完成后也一定不正确时，便停止构造当前解，返回去构造下一个解。</p>
+<p>其核心思想在于：将一个完整的解分成一个个部件，每次选择一个符合要求的部件，如果找不到下一个“合法”部件时，便回头去尝试下一个合法部件，直至“拼出”整个完整的解。</p>
+<div class="heading-low scrollspy"><h3>减治法</h2></div>
 
     <hr>
     <span>End.</span>
