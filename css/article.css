@@ -202,8 +202,12 @@ header{
     white-space: pre-wrap;     
 }
 
-.dir-H3>a::before, .dir-H4>a::before{
+.dir-H3>a::before{
     content: ">  ";
+}
+
+.dir-H4>a::before{
+    content: "--  >  ";
 }
 
 .language-text{

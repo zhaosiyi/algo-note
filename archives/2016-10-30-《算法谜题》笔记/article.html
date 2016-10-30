@@ -32,10 +32,10 @@
 <li><p>回溯法（backtracking）</p></li>
 <li><p>减治法（decrease-and-conquer）</p></li>
 </ul>
-<div class="heading-low scrollspy"><h3>穷举搜索</h2></div>
+<div class="heading-low scrollspy"><h3>1.1.1 穷举搜索</h2></div>
 <p>即生成所有可能的解，然后一一检查解是否正确。</p>
 <p>其时间复杂度通常为阶乘级别，效率低下，但适用范围广泛。</p>
-<div class="heading-low scrollspy"><h3>回溯法</h2></div>
+<div class="heading-low scrollspy"><h3>1.1.2 回溯法</h2></div>
 <p>基本思路和穷举搜索类似，但回溯法在一个解还未构造完成时就开始不断评估这个“半成品”。当它断定这个“半成品”在完成后也一定不正确时，便停止构造当前解，返回去构造下一个解。</p>
 <p>其核心思想在于：将一个完整的解分成一个个部件，每次选择一个符合要求的部件，如果找不到下一个“合法”部件时，便回头去尝试下一个合法部件，直至“拼出”整个完整的解。</p>
 <div class="heading-low scrollspy"><h4>例题：八皇后问题</h3></div>
@@ -56,7 +56,7 @@
 <li><p>以此类推，摆放其余皇后。</p></li>
 <li><p>如果成功摆上 8 个皇后，此时的摆法为一个正确的解。</p></li>
 </ul>
-<div class="heading-low scrollspy"><h3>减治法</h2></div>
+<div class="heading-low scrollspy"><h3>1.1.3 减治法</h2></div>
 <p>减治法的核心在于：想办法减小原问题的规模，并使得新问题（规模更小的问题）的解和原问题（规模更大的问题）的解相同。并由此递归计算，直至问题的规模小到能直接求解，从而解决原问题。</p>
 <div class="heading-low scrollspy"><h4>例题：名流问题</h3></div>
 <blockquote>
